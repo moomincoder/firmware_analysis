@@ -1,4 +1,4 @@
-### This repo is a collection of scripts I've written to assist with quickly analyzing firmware that I've dumped from IoT devices (mainly security cameras)\
+### This repo is a collection of scripts I've written to assist with quickly analyzing firmware that I've dumped from IoT devices (mainly security cameras)
 #### ToDo:
 - Script to automate firmware extraction a little more
 - Have hash_yoinker.sh check hashes against crackstation or something like that, if they don't have a hit, save them until everything else is done, and then try and crack them
