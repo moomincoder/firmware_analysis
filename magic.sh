@@ -1,13 +1,13 @@
 #!/bin/bash
-# This script is designed to parse firmware dumps and to extract creds (or CTF flags)
-# By Neko
+# By CodeNeko
+# To parse firmware dumps and to extract creds (or CTF flags)
 
-# dependancies
-# binwalk
-# file
-# strings
-# rg (ripgrep)
-# unsquashfs
+# dependancies:
+# 	binwalk
+# 	file
+# 	strings
+# 	rg (ripgrep)
+# 	unsquashfs
 
 input=$1
 extracted="_$input.extracted"
@@ -19,6 +19,8 @@ mode=$2
 # strings, recursivly and outputing every files strings to a file named "$file.strings"
 # rg
 # also unzips archives it sees, and unsquashes any squashfs files that it sees
+# WARNING: THIS CAN ESSENTIALLY BE A ZIP BOMB DEPENDING ON THE FIRMWARE YOU ARE EXTRACTING
+
 
 # Check if the folder path is provided
 if [[ -z "$input" ]]; then
@@ -88,12 +90,12 @@ function not_a_directory {
 
 
 # ON HOLD FOR NOW, ABOVE IS MORE IMPORTANT
-# function its_a_directory {
-# 	input=$1
-# 	process_files "$input"
-# 	strings_files_recursively "$input"
-# 	grepping_time "$input"
-# }
+function its_a_directory {
+	input=$1
+	process_files "$input"
+	strings_files_recursively "$input"
+	grepping_time "$input"
+}
 
 function process_files {
 	echo $1
@@ -142,7 +144,7 @@ if [[ ! -d "$input" ]]; then
 	echo "The provided path is not a directory: $input"
 	not_a_directory "$input"
 else
-	#echo "The provided input is a directory: $input"
-	echo "Cry about it, this is on hold for right now"
-	#its_a_directory "$input"
+	echo "The provided input is a directory: $input"
+	# echo "Cry about it, this is on hold for right now"
+	its_a_directory "$input"
 fi
