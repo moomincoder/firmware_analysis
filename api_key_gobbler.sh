@@ -60,10 +60,11 @@ for var in "${variable_names[@]}"; do
     # variable name: $var
     # variable value: $value
     echo "Searching for $var"
-    grep -rhPo "$value" "$folder_path" > "$temp_file"
+    grep -rhnHPo "$value" "$folder_path" >> "$output_file"
+    # grep -rhnHPo "$value" "$folder_path"
 done
 
-# sort "$temp_file" | uniq > "$output_file"
-cat "$temp_file" | uniq > "$output_file"
-rm "$temp_file"
+
+# cat "$temp_file" | uniq > "$output_file"
+# rm "$temp_file"
 echo "Deduplicated results saved to $output_file"

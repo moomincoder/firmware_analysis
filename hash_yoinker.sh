@@ -16,7 +16,7 @@ if [ "$#" -ne 2 ]; then
 fi
 
 
-if [[ "$4" == "-crack" || "$4" == "-c" || "$4" == "-C" ]]; then
+if [[ "$4" == "--crack" || "$4" == "-c" || "$4" == "-C" ]]; then
     echo "Cracking to commence once the hashes have been obtained"
     $cracking = true
     if [[ -z "$5" ]]; then
