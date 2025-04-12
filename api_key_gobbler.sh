@@ -40,7 +40,7 @@ HerokuAPIKey="[h|H][e|E][r|R][o|O][k|K][u|U].*[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4
 MailChimpAPIKey="[0-9a-f]{32}-us[0-9]{1,2}"
 MailgunAPIKey="key-[0-9a-zA-Z]{32}"
 PasswordinURL="[a-zA-Z]{3,10}://[^/\\s:@]{3,20}:[^/\\s:@]{3,20}@.{1,100}[\"'\\s]"
-PayPalBraintreeAccessToken="access_token\\\$production\\$[0-9a-z]{16}\\$[0-9a-f]{32}"
+# PayPalBraintreeAccessToken="access_token\\\$production\\$[0-9a-z]{16}\\$[0-9a-f]{32}"
 PicaticAPIKey="sk_live_[0-9a-z]{32}"
 SlackWebhook="https://hooks.slack.com/services/T[a-zA-Z0-9_]{8}/B[a-zA-Z0-9_]{8}/[a-zA-Z0-9_]{24}"
 StripeAPIKey="sk_live_[0-9a-zA-Z]{24}"
@@ -52,7 +52,7 @@ TwitterAccessToken="[t|T][w|W][i|I][t|T][t|T][e|E][r|R].*[1-9][0-9]+-[0-9a-zA-Z]
 TwitterOAuth="[t|T][w|W][i|I][t|T][t|T][e|E][r|R].*['|\"][0-9a-zA-Z]{35,44}['|\"]"
 
 
-variable_names=("Cloudinary" "FirebaseURL" "SlackToken" "RSAprivatekey" "SSH_DSA_privatekey" "SSH_EC_privatekey" "PGPprivatekeyblock" "AmazonAWSAccessKeyID" "AmazonMWSAuthToken" "AWSAPIKey" "FacebookAccessToken" "FacebookOAuth" "GitHub" "GenericAPIKey" "GenericSecret" "GoogleAPIKey" "GoogleCloudPlatformAPIKey" "GoogleCloudPlatformOAuth" "GoogleDriveAPIKey" "GoogleDriveOAuth" "Google_GCP_Serviceaccount" "GoogleGmailAPIKey" "GoogleGmailOAuth" "GoogleOAuthAccessToken" "GoogleYouTubeAPIKey" "GoogleYouTubeOAuth" "HerokuAPIKey" "MailChimpAPIKey" "MailgunAPIKey" "PasswordinURL" "PayPalBraintreeAccessToken" "PicaticAPIKey" "SlackWebhook" "StripeAPIKey" "StripeRestrictedAPIKey" "SquareAccessToken" "SquareOAuthSecret" "TwilioAPIKey" "TwitterAccessToken" "TwitterOAuth")
+variable_names=("Cloudinary" "FirebaseURL" "SlackToken" "RSAprivatekey" "SSH_DSA_privatekey" "SSH_EC_privatekey" "PGPprivatekeyblock" "AmazonAWSAccessKeyID" "AmazonMWSAuthToken" "AWSAPIKey" "FacebookAccessToken" "FacebookOAuth" "GitHub" "GenericAPIKey" "GenericSecret" "GoogleAPIKey" "GoogleCloudPlatformAPIKey" "GoogleCloudPlatformOAuth" "GoogleDriveAPIKey" "GoogleDriveOAuth" "Google_GCP_Serviceaccount" "GoogleGmailAPIKey" "GoogleGmailOAuth" "GoogleOAuthAccessToken" "GoogleYouTubeAPIKey" "GoogleYouTubeOAuth" "HerokuAPIKey" "MailChimpAPIKey" "MailgunAPIKey" "PasswordinURL" "PicaticAPIKey" "SlackWebhook" "StripeAPIKey" "StripeRestrictedAPIKey" "SquareAccessToken" "SquareOAuthSecret" "TwilioAPIKey" "TwitterAccessToken" "TwitterOAuth")
 temp_file=$(mktemp)
 
 for var in "${variable_names[@]}"; do
@@ -60,8 +60,8 @@ for var in "${variable_names[@]}"; do
     # variable name: $var
     # variable value: $value
     echo "Searching for $var"
-    grep -rhnHPo "$value" "$folder_path" >> "$output_file"
-    # grep -rhnHPo "$value" "$folder_path"
+    # grep -rhnHPo "$value" "$folder_path" >> "$output_file"
+    grep -rhnHPoI "$value" "$folder_path"
 done
 
 
